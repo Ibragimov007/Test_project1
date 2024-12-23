@@ -25,9 +25,13 @@ public class Main {
             int a = parseInt(parts[0]);
             int b = parseInt(parts[2]);
 
+            if (a < 1 || a > 10 || b < 1 || b > 10) {
+                throw new IllegalArgumentException("Numbers should be between 1 and 10");
+            }
+
             String operator = parts[1];
 
-            int result = calculate(a, b, operator);
+            String result = Calculate(a, b, operator);
             System.out.println("Result: " + result);
 
         }
@@ -37,22 +41,22 @@ public class Main {
         }
     }
 
-    private static int calculate(int a, int b, String operator) {
+    private static String Calculate(int a, int b, String operator) {
         switch (operator) {
             case "+" -> {
-                return a + b;
+                return String.valueOf(a + b);
             }
             case "-" -> {
-                return a - b;
+                return String.valueOf(a - b);
             }
             case "*" -> {
-                return a * b;
+                return String.valueOf(a * b);
             }
             case "/" -> {
                 if (b == 0) {
-                    throw new ArithmeticException("Division by zero is not allowed.");
+                    throw new ArithmeticException("Деление на ноль не допускается.");
                 }
-                return a / b;
+                return String.valueOf(a / b);
             }
             default -> throw new IllegalArgumentException("Некорректный оператор: " + operator);
         }
